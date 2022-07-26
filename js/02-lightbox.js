@@ -20,7 +20,9 @@ function creatImgCards(galleryItems) {
     .join("");
 }
 
-let lightbox = new SimpleLightbox(".gallery a", {});
+let lightbox = new SimpleLightbox(".gallery a", {
+  captionDelay: 250,
+});
 // блокую перехід по лінку
 console.log(captionDelay);
 function BlockEventClickLoad(e) {
