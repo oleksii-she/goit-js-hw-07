@@ -4,8 +4,8 @@ import { galleryItems } from "./gallery-items.js";
 const gallery = document.querySelector(".gallery");
 
 // добавляємо фотокартки в нашу галерею
-const GalleryImgCards = creatImgCards(galleryItems);
-gallery.insertAdjacentHTML("beforeend", GalleryImgCards);
+const imgConteiner = creatImgCards(galleryItems);
+gallery.insertAdjacentHTML("beforeend", imgConteiner);
 
 // функція імпортує зображення galleryItems, в штмл
 function creatImgCards(galleryItems) {
@@ -41,16 +41,20 @@ function onOpenClickModal(event) {
 // модалка
 
 function modalBigImageOn() {
+  window.addEventListener("keydown", onCloseKeyEsc);
   const instance = basicLightbox.create(`
     <img src="${event.target.dataset.source}" width="800" height="600">
     
 `);
-  instance.show();
-  window.addEventListener("keydown", (e) => {
+
+  instance.show(instance);
+
+  function onCloseKeyEsc(e) {
     if (e.code === "Escape" && instance.visible()) {
       instance.close();
+      window.removeEventListener("keydown", onCloseKeyEsc);
     }
-  });
+  }
 }
 
 // блокую перехід по лінку

@@ -4,8 +4,8 @@ import { galleryItems } from "./gallery-items.js";
 const galleryCards = document.querySelector(".gallery");
 
 // добавляємо фотокартки в нашу галерею
-const GalleryImgCards = creatImgCards(galleryItems);
-galleryCards.insertAdjacentHTML("beforeend", GalleryImgCards);
+const imgConteiner = creatImgCards(galleryItems);
+galleryCards.insertAdjacentHTML("beforeend", imgConteiner);
 
 // функція імпортує зображення galleryItems, в штмл
 function creatImgCards(galleryItems) {
