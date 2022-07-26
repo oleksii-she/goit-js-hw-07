@@ -1,4 +1,28 @@
-import { galleryItems } from './gallery-items.js';
+import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-console.log(galleryItems);
+const galleryCards = document.querySelector(".gallery");
+
+// добавляємо фотокартки в нашу галерею
+const GalleryImgCards = creatImgCards(galleryItems);
+galleryCards.insertAdjacentHTML("beforeend", GalleryImgCards);
+
+// функція імпортує зображення galleryItems, в штмл
+function creatImgCards(galleryItems) {
+  return galleryItems
+    .map(({ original, preview, description }) => {
+      return `
+<a class="gallery__item" href="${original}">
+  <img class="gallery__image" src="${preview}" alt="${description}" title="${description}" />
+</a>
+`;
+    })
+    .join("");
+}
+
+let lightbox = new SimpleLightbox(".gallery a", {});
+// блокую перехід по лінку
+console.log(captionDelay);
+function BlockEventClickLoad(e) {
+  e.preventDefault();
+}
