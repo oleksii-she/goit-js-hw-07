@@ -41,18 +41,20 @@ function onOpenClickModal(event) {
 // модалка
 
 function modalBigImageOn() {
-  window.addEventListener("keydown", onCloseKeyEsc);
   const instance = basicLightbox.create(`
     <img src="${event.target.dataset.source}" width="800" height="600">
     
 `);
-
   instance.show(instance);
+  if (instance.visible()) {
+    window.addEventListener("keydown", onCloseKeyEsc);
+  }
 
   function onCloseKeyEsc(e) {
-    if (e.code === "Escape" && instance.visible()) {
+    if (e.code === "Escape") {
       instance.close();
       window.removeEventListener("keydown", onCloseKeyEsc);
+      return;
     }
   }
 }
