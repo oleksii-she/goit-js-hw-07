@@ -41,10 +41,17 @@ function onOpenClickModal(event) {
 // модалка
 
 function modalBigImageOn() {
-  const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(
+    `
     <img src="${event.target.dataset.source}" width="800" height="600">
     
-`);
+`,
+    {
+      onClose: (instance) => {
+        window.removeEventListener("keydown", onCloseKeyEsc);
+      },
+    }
+  );
 
   if (instance.show(instance)) {
     window.addEventListener("keydown", onCloseKeyEsc);
@@ -53,7 +60,6 @@ function modalBigImageOn() {
   function onCloseKeyEsc(e) {
     if (e.code === "Escape" && instance.visible()) {
       instance.close();
-      window.removeEventListener("keydown", onCloseKeyEsc);
     }
   }
 }
