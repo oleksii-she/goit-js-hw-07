@@ -45,16 +45,15 @@ function modalBigImageOn() {
     <img src="${event.target.dataset.source}" width="800" height="600">
     
 `);
-  instance.show(instance);
-  if (instance.visible()) {
+
+  if (instance.show(instance)) {
     window.addEventListener("keydown", onCloseKeyEsc);
   }
 
   function onCloseKeyEsc(e) {
-    if (e.code === "Escape") {
+    if (e.code === "Escape" && instance.visible()) {
       instance.close();
       window.removeEventListener("keydown", onCloseKeyEsc);
-      return;
     }
   }
 }
